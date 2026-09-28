@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: Abellorca/florherrerafotografia
+  name: git-gateway
   branch: main
 
 media_folder: /
