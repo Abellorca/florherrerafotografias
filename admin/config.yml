@@ -6,14 +6,25 @@ media_folder: /
 public_folder: /
 
 collections:
-  - name: albumes
-    label: Álbumes / Categorías
-    folder: contenido/albumes
-    create: true
-    delete: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Nombre del Álbum", name: "title", widget: "string" }
-      - { label: "Descripción Corta", name: "descripcion", widget: "string", required: false }
-      - { label: "Precio General por Foto", name: "precio_base", widget: "string", required: false }
-      - { label: "Link de Mercado Pago General", name: "linkPago", widget: "string" }
+  - name: "catalogo"
+    label: "Gestor de Álbumes"
+    files:
+      - label: "Todos los Álbumes"
+        name: "albumes_data"
+        file: "albumes.json"
+        fields:
+          - name: albumes
+            label: Lista de Álbumes
+            widget: list
+            fields:
+              - { label: "ID (una palabra sin espacios, ej: aves)", name: "id", widget: "string" }
+              - { label: "Título del Álbum", name: "tituloAlbum", widget: "string" }
+              - { label: "Descripción", name: "descripcion", widget: "text" }
+              - { label: "Precio General", name: "precioGeneral", widget: "string" }
+              - { label: "Imagen Portada", name: "imagenPortada", widget: "image" }
+              - name: fotos
+                label: Fotos adentro de este álbum
+                widget: list
+                fields:
+                  - { label: "Título de la foto", name: "title", widget: "string" }
+                  - { label: "Imagen", name: "imagenUrl", widget: "image" }
