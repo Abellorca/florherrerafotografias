@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLORCITA</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Script de identidad de Netlify con apertura y cierre correctos -->
+    </script>
+</head>
+<body>
+    <!-- Menú de Navegación Fijo Superior -->
+<nav class="navbar">
+    <div class="nav-contenedor">
+        <span class="logo">FH</span>
+        <div class="nav-enlaces">
+            <a href="#inicio">Inicio</a>
+            <a href="#galeria-seccion">Galería</a>
+            <a href="#contratar-seccion">Servicios Especiales</a>
+        </div>
+    </div>
+</nav>
+
+     <header id="inicio">
+        <h1>Florencia Herrera</h1>
+        <p>El arte de la fotografia</p>
+    </header>
+        <!-- Contenedor con el ID que busca el menú superior -->
+    <div id="galeria-seccion">
+        <!-- Título estético para que la sección tenga contenido fijo -->
+        <h2 style="text-align: center; margin-top: 60px; font-size: 2rem; color: #ffffff;">Galería de Obras</h2>
+        <p style="text-align: center; color: #888888; margin-bottom: 25px;">Seleccioná una categoría para ver las fotografías disponibles.</p>
+
+        <!-- Barra de botones para cambiar de Álbum (Se llenan solos con JavaScript) -->
+        <div id="filtros-albumes" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; padding: 0 20px;">
+            <!-- Acá JavaScript va a meter los botones de las carpetas automáticamente -->
+        </div>
+
+        <!-- Caja única que va a leer JavaScript -->
+        <main class="galeria" id="contenedor-galeria">
+            <!-- Acá adentro JavaScript va a inyectar las fotos automáticamente -->
+        </main>
+
+
+    <!-- 2. Nueva Sección de Contratación Especial (Este lleva el ID que busca el menú) -->
+        <!-- Sección de Contratación con Dos Columnas -->
+    <section class="seccion-servicios" id="contratar-seccion">
+        <div class="servicios-contenedor">
+            
+            <!-- Columna Izquierda: El Formulario -->
+            <div class="columna-formulario">
+                <h2>Contratar Servicio Especial</h2>
+                <p class="subtitulo-form">Completá los detalles de tu evento y me pondré en contacto.</p>
+                
+                <form action="https://formsubmit.co" method="POST">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <label>Nombre Completo</label>
+                    <input type="text" name="nombre_completo" placeholder="Ej: Juan Pérez" required>
+                    
+                    <label>Número de Teléfono</label>
+                    <input type="tel" name="telefono" placeholder="Ej: +54 9 11 2345-6789" required>
+                    
+                    <label>Descripción del Evento</label>
+                    <textarea name="descripcion_evento" placeholder="Tipo de evento, fecha estimada y lugar..." rows="3" required></textarea>
+                    
+                    <label>Expectativas del Servicio</label>
+                    <textarea name="expectativas" placeholder="Estilo de fotos, cantidad de imágenes editadas, etc..." rows="3" required></textarea>
+                    
+                    <button type="submit">Enviar Solicitud de Presupuesto</button>
+                </form>
+            </div>
+
+            <!-- Columna Derecha: El Texto Atractivo / Copwriter -->
+            <div class="columna-texto">
+                <span class="etiqueta-destacada">Servicios Exclusivos</span>
+                <h3>Hagamos que tus momentos se vuelvan eternos</h3>
+                <p class="descripcion-vendedora">
+                    Cada evento cuenta una historia única. Mi objetivo como fotógrafa no es solo registrar un día en el calendario, sino capturar la atmósfera, las risas espontáneas y los detalles que a menudo pasan desapercibidos.
+                </p>
+                
+                <div class="item-expectativa">
+                    <h4>✨ Calidad de Autor</h4>
+                    <p>Entrego coberturas personalizadas con un proceso de edición digital minucioso, cuidando la luz, el color y la narrativa visual de cada toma.</p>
+                </div>
+
+                <div class="item-expectativa">
+                    <h4>📅 Planificación a Medida</h4>
+                    <p>Diseñamos la sesión con anticipación. Analizamos tus expectativas, el timing del evento y los momentos clave para que no falte ninguna imagen esencial.</p>
+                </div>
+
+                <div class="item-expectativa">
+                    <h4>🔒 Compromiso y Puntualidad</h4>
+                    <p>Garantizo un trato profesional de inicio a fin, con equipos de respaldo de alta gama y plazos de entrega óptimos para tus fotografías finales.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Pie de Página (Footer) con Derechos de Autor y Créditos -->
+    <footer class="pie-pagina">
+        <p>&copy; 2026 Florencia Herrera. Todos los derechos reservados.</p>
+        <p class="creditos">Hecho por <span class="autor">Lorca, Abel</span></p>
+    </footer>
+
+
+<a href="https://wa.me.5493865260159" 
+   class="btn-whatsapp" 
+   target="_blank" 
+   rel="noopener noreferrer">
+    💬 WhatsApp
+</a>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>

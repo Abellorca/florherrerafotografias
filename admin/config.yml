@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: Abellorca/florherrerafotografia
+  branch: main
+
+media_folder: /
+public_folder: /
+
+collections:
+  - name: albumes
+    label: Álbumes / Categorías
+    folder: contenido/albumes
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre del Álbum", name: "title", widget: "string" }
+      - { label: "Descripción Corta", name: "descripcion", widget: "string", required: false }
+      - { label: "Precio General por Foto", name: "precio_base", widget: "string", required: false }
+      - { label: "Link de Mercado Pago General", name: "linkPago", widget: "string" }
