@@ -107,3 +107,16 @@ function mostrarAlbumPorDentro(album) {
 
 // Inicializamos la página llamando a la nueva función que busca los datos automáticos
 document.addEventListener("DOMContentLoaded", cargarDatosDesdeCMS);
+// Bloquear el clic derecho (Guardar imagen como...) en todas las imágenes
+document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
+// Bloquear la acción de "arrastrar y soltar" la imagen al escritorio
+document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
