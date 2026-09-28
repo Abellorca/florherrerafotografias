@@ -1,0 +1,17 @@
+{
+  "albumes": [
+    {
+      "imagenPortada": "/pexels-man-1838991_1920.jpg",
+      "fotos": [
+        {
+          "imagenUrl": "/pexels-man-1838991_1920.jpg",
+          "title": "hombre corriendo"
+        }
+      ],
+      "id": "MARATON",
+      "tituloAlbum": "MARATON CONCEPCION",
+      "descripcion": "MARATON CARRERA CONCEPCION",
+      "precioGeneral": "6000"
+    }
+  ]
+}
