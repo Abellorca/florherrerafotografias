@@ -1,36 +1,30 @@
 // ========================================================
-// ESTRUCTURA DE ÁLBUMES Y CARPETAS DE FOTOS
+// ESTRUCTURA DE ÁLBUMES DINÁMICA (CONECTADA AL CMS)
 // ========================================================
 
-const albumes = [
-    {
-        id: "running",
-        tituloAlbum: "Running El Indio",
-        descripcion: "Maratón desde Monteros hasta El Indio",
-        precioGeneral: "\$4.500",
-        // Esta es la foto que se usará como "portada" de la carpeta
-        imagenPortada: "maraton1.jpg", 
-        fotos: [
-            { title: "Largada en Monteros", imagenUrl: "maraton1.jpg" },
-            { title: "Paso por el Río", imagenUrl: "maraton2.jpg" },
-            { title: "Llegada al Indio", imagenUrl: "maraton2.jpg" } // Podés sumar todas las que quieras acá
-        ]
-    },
-    {
-        id: "aves",
-        tituloAlbum: "Aves de Tucumán",
-        descripcion: "Fotografía de fauna y aves autóctonas",
-        precioGeneral: "\$6.000",
-        imagenPortada: "aves1.jpg", 
-        fotos: [
-            { title: "Pajarito en el tronco", imagenUrl: "aves1.jpg" }, 
-            { title: "Patitos en el nido", imagenUrl: "aves2.jpg" }
-        ]
-    }
-];
+let albumes = [];
 
 // Número de teléfono real de Florencia (Cambiá este número por el de ella)
 const telefonoWhatsApp = "549123456789"; 
+
+// Función para leer los datos automáticos que crea el panel
+async function cargarDatosDesdeCMS() {
+    try {
+        const respuesta = await fetch('albumes.json');
+        
+        if (!respuesta.ok) {
+            throw new Error("No se encontró el archivo albumes.json");
+        }
+        
+        const datos = await respuesta.json();
+        
+        // Guardamos los datos y cargamos la vista
+        albumes = datos.albumes || [];
+        cargarVistaInicial();
+    } catch (error) {
+        console.error("Aún no hay álbumes cargados o hubo un error:", error);
+    }
+}
 
 // ========================================================
 // MOTOR LÓGICO DE LA GALERÍA INTERACTIVA
@@ -73,7 +67,7 @@ function mostrarAlbumPorDentro(album) {
     const contenedorFiltros = document.getElementById("filtros-albumes");
     const contenedorFotos = document.getElementById("contenedor-galeria");
 
-    // 1. Creamos un botón elegante para "Volver atrás" a las carpetas principales
+    // 1. Creamos un botón para "Volver atrás" a las carpetas principales
     contenedorFiltros.innerHTML = `
         <button class="btn-album activo" id="btn-volver">← Volver a las Carpetas</button>
         <h2 style="text-align: center; width: 100%; margin-top: 20px; color: white;">${album.tituloAlbum}</h2>
@@ -85,25 +79,31 @@ function mostrarAlbumPorDentro(album) {
     // 2. Limpiamos la grilla y dibujamos TODAS las fotos que tiene este álbum adentro
     contenedorFotos.innerHTML = "";
 
-    album.fotos.forEach(foto => {
-        const tarjetaFoto = document.createElement("div");
-        tarjetaFoto.classList.add("foto-tarjeta");
+    // Verificamos si hay fotos para evitar errores
+    if (album.fotos && album.fotos.length > 0) {
+        album.fotos.forEach(foto => {
+            const tarjetaFoto = document.createElement("div");
+            tarjetaFoto.classList.add("foto-tarjeta");
 
-        const mensajeWhatsApp = `Hola Florencia! Vi tu catálogo web y me interesa adquirir la fotografía "${foto.title}" de la categoría ${album.tituloAlbum} (Valor: ${album.precioGeneral}).`;
-        const urlWhatsAppReal = `https://wa.me{telefonoWhatsApp}?text=${encodeURIComponent(mensajeWhatsApp)}`;
+            const mensajeWhatsApp = `Hola Florencia! Vi tu catálogo web y me interesa adquirir la fotografía "${foto.title}" de la categoría ${album.tituloAlbum} (Valor: ${album.precioGeneral}).`;
+            // Corrección: Agregué la barra diagonal "/" que faltaba antes del número en tu código original
+            const urlWhatsAppReal = `https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensajeWhatsApp)}`;
 
-        tarjetaFoto.innerHTML = `
-            <img src="${foto.imagenUrl}" alt="${foto.title}">
-            <div class="foto-info">
-                <h3>${foto.title}</h3>
-                <span class="precio">${album.precioGeneral}</span>
-                <a href="${urlWhatsAppReal}" target="_blank" class="btn-comprar">Encargar Foto</a>
-            </div>
-        `;
+            tarjetaFoto.innerHTML = `
+                <img src="${foto.imagenUrl}" alt="${foto.title}">
+                <div class="foto-info">
+                    <h3>${foto.title}</h3>
+                    <span class="precio">${album.precioGeneral}</span>
+                    <a href="${urlWhatsAppReal}" target="_blank" class="btn-comprar">Encargar Foto</a>
+                </div>
+            `;
 
-        contenedorFotos.appendChild(tarjetaFoto);
-    });
+            contenedorFotos.appendChild(tarjetaFoto);
+        });
+    } else {
+        contenedorFotos.innerHTML = `<p style="color: white; text-align: center; width: 100%;">Este álbum aún no tiene fotos cargadas.</p>`;
+    }
 }
 
-// Inicializamos la página mostrando las carpetas al principio
-document.addEventListener("DOMContentLoaded", cargarVistaInicial);
+// Inicializamos la página llamando a la nueva función que busca los datos automáticos
+document.addEventListener("DOMContentLoaded", cargarDatosDesdeCMS);
