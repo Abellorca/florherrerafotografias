@@ -52,23 +52,14 @@
                 <h2>Contratar Servicio Especial</h2>
                 <p class="subtitulo-form">Completá los detalles de tu evento y me pondré en contacto.</p>
                 
-                <form action="https://formsubmit.co" method="POST">
-                    <input type="hidden" name="_captcha" value="false">
-                    
-                    <label>Nombre Completo</label>
-                    <input type="text" name="nombre_completo" placeholder="Ej: Juan Pérez" required>
-                    
-                    <label>Número de Teléfono</label>
-                    <input type="tel" name="telefono" placeholder="Ej: +54 9 11 2345-6789" required>
-                    
-                    <label>Descripción del Evento</label>
-                    <textarea name="descripcion_evento" placeholder="Tipo de evento, fecha estimada y lugar..." rows="3" required></textarea>
-                    
-                    <label>Expectativas del Servicio</label>
-                    <textarea name="expectativas" placeholder="Estilo de fotos, cantidad de imágenes editadas, etc..." rows="3" required></textarea>
-                    
-                    <button type="submit">Enviar Solicitud de Presupuesto</button>
-                </form>
+                <form id="form-servicio-especial">
+    <input type="text" id="nombre-cliente" placeholder="Ej: Juan Pérez" required />
+    <input type="tel" id="telefono-cliente" placeholder="Ej: +54 9 11 2345-6789" required />
+    <textarea id="descripcion-evento" placeholder="Tipo de evento, fecha estimada y lugar..." required></textarea>
+    <textarea id="expectativas-servicio" placeholder="Estilo de fotos, cantidad de imágenes editadas, etc..." required></textarea>
+    
+    <button type="submit" id="btn-enviar-presupuesto">Enviar Solicitud de Presupuesto</button>
+</form>
             </div>
 
             <!-- Columna Derecha: El Texto Atractivo / Copwriter -->
