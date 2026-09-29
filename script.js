@@ -109,17 +109,17 @@ document.addEventListener("DOMContentLoaded", cargarDatosDesdeCMS);
 
 
 // ========================================================
-// PROTECCIÓN DE IMÁGENES (Capa 1: JS - Bloqueo de clics y arrastre)
+// PROTECCIÓN DE IMÁGENES Y GALERÍA (Corregido)
 // ========================================================
 
-// Bloquear el clic derecho (Guardar imagen como...) en todas las imágenes
+// Bloquea el menú del clic derecho en fotos y dentro de las tarjetas de la galería
 document.addEventListener('contextmenu', function(e) {
-    if (e.target.tagName === 'IMG') {
+    if (e.target.tagName === 'IMG' || e.target.closest('.foto-tarjeta')) {
         e.preventDefault();
     }
 });
 
-// Bloquear la acción de "arrastrar y soltar" la imagen al escritorio
+// Evita que arrastren la imagen al escritorio o a otra pestaña
 document.addEventListener('dragstart', function(e) {
     if (e.target.tagName === 'IMG') {
         e.preventDefault();
