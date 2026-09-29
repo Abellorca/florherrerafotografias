@@ -4,8 +4,8 @@
 
 let albumes = [];
 
-// Número de teléfono real de Florencia (Cambiá este número por el de ella)
-const telefonoWhatsApp = "549123456789"; 
+// Número de teléfono real de Florencia para consultas y pedidos
+const telefonoWhatsApp = "5493865260159"; 
 
 // Función para leer los datos automáticos que crea el panel
 async function cargarDatosDesdeCMS() {
@@ -86,7 +86,6 @@ function mostrarAlbumPorDentro(album) {
             tarjetaFoto.classList.add("foto-tarjeta");
 
             const mensajeWhatsApp = `Hola Florencia! Vi tu catálogo web y me interesa adquirir la fotografía "${foto.title}" de la categoría ${album.tituloAlbum} (Valor: ${album.precioGeneral}).`;
-            // Corrección: Agregué la barra diagonal "/" que faltaba antes del número en tu código original
             const urlWhatsAppReal = `https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensajeWhatsApp)}`;
 
             tarjetaFoto.innerHTML = `
@@ -107,6 +106,12 @@ function mostrarAlbumPorDentro(album) {
 
 // Inicializamos la página llamando a la nueva función que busca los datos automáticos
 document.addEventListener("DOMContentLoaded", cargarDatosDesdeCMS);
+
+
+// ========================================================
+// PROTECCIÓN DE IMÁGENES (Bloqueo de clics y arrastre)
+// ========================================================
+
 // Bloquear el clic derecho (Guardar imagen como...) en todas las imágenes
 document.addEventListener('contextmenu', function(e) {
     if (e.target.tagName === 'IMG') {
@@ -118,5 +123,59 @@ document.addEventListener('contextmenu', function(e) {
 document.addEventListener('dragstart', function(e) {
     if (e.target.tagName === 'IMG') {
         e.preventDefault();
+    }
+});
+
+
+// ========================================================
+// ENVÍO DE FORMULARIO AL WEBHOOK (AGENTE IA)
+// ========================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+    const formEspecial = document.getElementById("form-servicio-especial");
+
+    if (formEspecial) {
+        formEspecial.addEventListener("submit", async (e) => {
+            e.preventDefault(); // Evitamos que la página se recargue
+
+            const btnSubmit = document.getElementById("btn-enviar-presupuesto");
+            const textoOriginalBtn = btnSubmit.innerText;
+            btnSubmit.innerText = "Enviando solicitud...";
+            btnSubmit.disabled = true;
+
+            // Recolectamos los datos del formulario usando los IDs exactos de tu HTML
+            const datosPedido = {
+                nombre: document.getElementById("nombre-cliente").value,
+                telefono: document.getElementById("telefono-cliente").value,
+                descripcion: document.getElementById("descripcion-evento").value,
+                expectativas: document.getElementById("expectativas-servicio").value,
+                fechaEnvio: new Date().toLocaleString("es-AR")
+            };
+
+            try {
+                // AQUÍ: Reemplaza esta URL por la de tu Webhook (Make.com, n8n, etc.)
+                const urlWebhook = "https://hook.us1.make.com/TU_WEBHOOK_AQUI"; 
+                
+                const respuesta = await fetch(urlWebhook, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(datosPedido)
+                });
+
+                if (respuesta.ok) {
+                    alert("¡Solicitud enviada con éxito! Florencia se pondrá en contacto a la brevedad.");
+                    formEspecial.reset(); // Limpiamos el formulario
+                } else {
+                    alert("Hubo un detalle al enviar. Intentalo nuevamente.");
+                }
+            } catch (error) {
+                console.error("Error al enviar el pedido:", error);
+                alert("Ocurrió un error de conexión. Por favor, verifica tu internet.");
+            } finally {
+                // Restauramos el botón a su estado normal
+                btnSubmit.innerText = textoOriginalBtn;
+                btnSubmit.disabled = false;
+            }
+        });
     }
 });
