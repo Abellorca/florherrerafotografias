@@ -371,3 +371,8 @@ form button:hover {
     border-color: #ffffff;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); /* Brillo sutil blanco */
 }
+/* Bloqueo de selección y arrastre de imágenes */
+img {
+    user-select: none;
+    -webkit-user-drag: none;
+}
