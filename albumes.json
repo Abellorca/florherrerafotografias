@@ -1,30 +1,3 @@
 {
-  "albumes": [
-    {
-      "imagenPortada": "/pexels-man-1838991_1920.jpg",
-      "fotos": [
-        {
-          "imagenUrl": "/pexels-man-1838991_1920.jpg",
-          "title": "hombre corriendo"
-        }
-      ],
-      "id": "MARATON",
-      "tituloAlbum": "MARATON CONCEPCION",
-      "descripcion": "MARATON CARRERA CONCEPCION",
-      "precioGeneral": "6000"
-    },
-    {
-      "id": "aves",
-      "tituloAlbum": "aves",
-      "descripcion": "gaviota ",
-      "precioGeneral": "2000",
-      "imagenPortada": "jeejong58-seagull-4795739_1920.jpg",
-      "fotos": [
-        {
-          "title": "gaviota",
-          "imagenUrl": "jeejong58-seagull-4795739_1920.jpg"
-        }
-      ]
-    }
-  ]
+  "albumes": []
 }
