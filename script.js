@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", cargarDatosDesdeCMS);
 
 
 // ========================================================
-// PROTECCIÓN DE IMÁGENES (Bloqueo de clics y arrastre)
+// PROTECCIÓN DE IMÁGENES (Capa 1: JS - Bloqueo de clics y arrastre)
 // ========================================================
 
 // Bloquear el clic derecho (Guardar imagen como...) en todas las imágenes
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btnSubmit.innerText = "Enviando solicitud...";
             btnSubmit.disabled = true;
 
-            // Recolectamos los datos del formulario usando los IDs exactos de tu HTML
+            // Recolectamos los datos del formulario
             const datosPedido = {
                 nombre: document.getElementById("nombre-cliente").value,
                 telefono: document.getElementById("telefono-cliente").value,
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             try {
-                // AQUÍ: Reemplaza esta URL por la de tu Webhook (Make.com, n8n, etc.)
+                // AQUÍ: Reemplaza esta URL por la de tu Webhook en Make.com
                 const urlWebhook = "https://hook.us1.make.com/TU_WEBHOOK_AQUI"; 
                 
                 const respuesta = await fetch(urlWebhook, {
