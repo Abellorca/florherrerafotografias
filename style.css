@@ -371,8 +371,9 @@ form button:hover {
     border-color: #ffffff;
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); /* Brillo sutil blanco */
 }
-/* Bloqueo de selección y arrastre de imágenes */
+/* Bloqueo total: Escudo invisible para imágenes */
 img {
     user-select: none;
     -webkit-user-drag: none;
+    pointer-events: none; /* Esta es la magia: desactiva la interacción del mouse con la foto */
 }
