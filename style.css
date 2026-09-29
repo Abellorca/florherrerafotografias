@@ -2,7 +2,6 @@
    1. RESETEO GLOBAL Y MODO OSCURO (DARK MODE)
    ========================================== */
 
-/* Esto limpia los márgenes por defecto del navegador en todo el sitio */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -11,15 +10,20 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Desplazamiento suave al usar el menú */
-    scroll-padding-top: 80px; /* Evita que el menú tape el contenido al llegar */
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
-/* Cambiamos el fondo de TODO el sitio a un gris oscuro moderno */
 body {
-    background-color: #121212; 
-    color: #e0e0e0;            /* Texto claro premium */
-    padding-top: 60px;         /* Espacio para que el menú fijo no tape la cabecera */
+    background-color: #121212;
+    color: #e0e0e0;
+    padding-top: 60px;
+}
+
+/* Accesibilidad: foco visible al navegar con teclado */
+:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }
 
 /* ==========================================
@@ -31,8 +35,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(18, 18, 18, 0.9); /* Fondo oscuro translúcido */
-    backdrop-filter: blur(10px);              /* Efecto vidrio esmerilado */
+    background-color: rgba(18, 18, 18, 0.9);
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid #252525;
     z-index: 2000;
@@ -42,27 +46,33 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: center; /* Centra los enlaces del menú */
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     padding: 18px 20px;
 }
 
-/* Diseñamos los enlaces para que dejen de ser azules y subrayados */
+.logo {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
 .nav-enlaces a {
-    text-decoration: none;    
-    color: #a0a0a0;           /* Color gris claro elegante */
-    margin: 0 25px;           
+    text-decoration: none;
+    color: #a0a0a0;
+    margin: 0 0 0 25px;
     font-weight: 600;
     font-size: 1rem;
-    text-transform: uppercase; /* Letras en mayúscula */
+    text-transform: uppercase;
     transition: color 0.3s ease, transform 0.2s;
     display: inline-block;
 }
 
-/* Efecto al pasar el mouse por encima del menú */
 .nav-enlaces a:hover {
-    color: #ffffff;           /* Se ilumina en blanco puro */
-    transform: translateY(-2px); 
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 /* ==========================================
@@ -71,18 +81,18 @@ body {
 
 header {
     text-align: center;
-    padding: 100px 20px; 
+    padding: 100px 20px;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('fondo.jpg');
-    background-size: cover;       
-    background-position: center;  
-    background-repeat: no-repeat; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-bottom: 1px solid #252525;
 }
 
 header h1 {
     font-size: 2.8rem;
     margin-bottom: 10px;
-    color: #ffffff; /* Letras blancas sobre el fondo de gaviotas */
+    color: #ffffff;
     letter-spacing: 1px;
 }
 
@@ -92,24 +102,72 @@ header p {
 }
 
 /* ==========================================
-   4. GRILLA Y TARJETAS DE LA GALERÍA
+   4. GALERÍA: TÍTULOS, FILTROS, GRILLA Y TARJETAS
    ========================================== */
+
+.titulo-galeria {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 2rem;
+    color: #ffffff;
+}
+
+.subtitulo-galeria {
+    text-align: center;
+    color: #888888;
+    margin-bottom: 25px;
+    padding: 0 20px;
+}
+
+#filtros-albumes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.titulo-album {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.subtitulo-album {
+    text-align: center;
+    width: 100%;
+    color: #888888;
+    font-size: 0.95rem;
+}
+
+.mensaje-galeria {
+    grid-column: 1 / -1;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+}
 
 .galeria {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 30px;
-    padding: 60px 20px;
+    padding: 30px 20px 60px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .foto-tarjeta {
-    background-color: #1e1e1e; /* Tarjetas gris oscuro */
+    background-color: #1e1e1e;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     transition: transform 0.3s ease;
+}
+
+.foto-tarjeta.clicable {
+    cursor: pointer;
 }
 
 .foto-tarjeta:hover {
@@ -134,6 +192,12 @@ header p {
     color: #ffffff;
 }
 
+.album-descripcion {
+    color: #888888;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
 .precio {
     font-weight: bold;
     color: #aaaaaa;
@@ -143,13 +207,18 @@ header p {
 
 .btn-comprar {
     display: inline-block;
-    background-color: #ffffff; /* Botón blanco que contrasta con el fondo oscuro */
+    background-color: #ffffff;
     color: #121212;
     padding: 11px 22px;
     text-decoration: none;
     border-radius: 4px;
     font-weight: 700;
     transition: background-color 0.2s;
+}
+
+.btn-comprar.btn-block {
+    display: block;
+    width: 100%;
 }
 
 .btn-comprar:hover {
@@ -173,11 +242,10 @@ header p {
     align-items: flex-start;
 }
 
-/* Columna Formulario Izquierda */
 .columna-formulario {
     flex: 1;
-    min-width: 300px;
-    background-color: #1e1e1e; /* Fondo oscuro integrado para el formulario */
+    min-width: min(300px, 100%);
+    background-color: #1e1e1e;
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
@@ -195,14 +263,6 @@ header p {
     margin-bottom: 25px;
 }
 
-form label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 6px;
-    font-size: 0.9rem;
-    color: #ffffff;
-}
-
 form input, form textarea {
     width: 100%;
     padding: 12px;
@@ -210,14 +270,18 @@ form input, form textarea {
     border: 1px solid #404040;
     border-radius: 4px;
     font-size: 1rem;
-    background-color: #2d2d2d; /* Caja de texto gris oscuro */
-    color: #ffffff;            /* Letra blanca al escribir */
+    background-color: #2d2d2d;
+    color: #ffffff;
     outline: none;
     transition: border-color 0.2s;
 }
 
+form textarea {
+    resize: vertical;
+}
+
 form input:focus, form textarea:focus {
-    border-color: #ffffff; /* Se ilumina en blanco al hacer clic */
+    border-color: #ffffff;
 }
 
 form button {
@@ -237,10 +301,14 @@ form button:hover {
     background-color: #dddddd;
 }
 
-/* Columna Texto Derecha */
+form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .columna-texto {
     flex: 1;
-    min-width: 300px;
+    min-width: min(300px, 100%);
     padding-top: 10px;
 }
 
@@ -273,7 +341,7 @@ form button:hover {
 
 .item-expectativa {
     margin-bottom: 20px;
-    border-left: 3px solid #ffffff; /* Línea de diseño blanca */
+    border-left: 3px solid #ffffff;
     padding-left: 15px;
 }
 
@@ -311,6 +379,7 @@ form button:hover {
 .btn-whatsapp:hover {
     transform: scale(1.05);
 }
+
 /* ==========================================
    7. PIE DE PÁGINA (FOOTER)
    ========================================== */
@@ -318,14 +387,14 @@ form button:hover {
 .pie-pagina {
     text-align: center;
     padding: 40px 20px;
-    background-color: #0d0d0d; /* Un tono un poquito más oscuro que el fondo para dar contraste */
+    background-color: #0d0d0d;
     border-top: 1px solid #252525;
     margin-top: 50px;
 }
 
 .pie-pagina p {
     font-size: 0.9rem;
-    color: #777777; /* Gris suave discreto */
+    color: #777777;
     margin-bottom: 5px;
 }
 
@@ -334,46 +403,97 @@ form button:hover {
     color: #555555;
 }
 
-/* Resalta tu nombre con un color un poquito más claro */
 .pie-pagina .autor {
     color: #aaaaaa;
     font-weight: 600;
 }
+
 /* ==========================================
-   ESTILOS PARA LOS BOTONES DE LOS ÁLBUMES
+   8. BOTONES DE LOS ÁLBUMES
    ========================================== */
 
-/* Diseñamos cada botón de categoría individual */
 .btn-album {
-    background-color: #1e1e1e; /* Fondo gris oscuro igual que las tarjetas */
-    color: #a0a0a0;            /* Letra clara por defecto */
-    border: 1px solid #333333; /* Borde sutil */
+    background-color: #1e1e1e;
+    color: #a0a0a0;
+    border: 1px solid #333333;
     padding: 10px 20px;
-    border-radius: 30px;       /* Bordes redondeados tipo pastilla */
+    border-radius: 30px;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease; /* Suaviza el cambio de color y animación */
+    transition: all 0.3s ease;
 }
 
-/* Efecto al pasar el cursor por encima (Hover) */
 .btn-album:hover {
-    background-color: #ffffff; /* El fondo cambia a blanco puro */
-    color: #121212;            /* La letra se vuelve oscura */
+    background-color: #ffffff;
+    color: #121212;
     border-color: #ffffff;
-    transform: translateY(-2px); /* Sube un poquitito de forma fluida */
+    transform: translateY(-2px);
 }
 
-/* Estilo para el botón del álbum que está seleccionado actualmente (Activo) */
 .btn-album.activo {
     background-color: #ffffff;
     color: #121212;
     border-color: #ffffff;
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2); /* Brillo sutil blanco */
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
-/* Bloqueo total: Escudo invisible para imágenes */
+
+/* ==========================================
+   9. PROTECCIÓN DE IMÁGENES
+   ========================================== */
+
 img {
     user-select: none;
+    -webkit-user-select: none;
     -webkit-user-drag: none;
-    pointer-events: none; /* Esta es la magia: desactiva la interacción del mouse con la foto */
+    pointer-events: none; /* El clic pasa a la tarjeta contenedora */
+}
+
+/* ==========================================
+   10. ADAPTACIÓN A CELULARES
+   ========================================== */
+
+@media (max-width: 640px) {
+    .nav-contenedor {
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 10px;
+    }
+
+    .nav-enlaces a {
+        margin: 0 8px;
+        font-size: 0.8rem;
+    }
+
+    body {
+        padding-top: 90px;
+    }
+
+    html {
+        scroll-padding-top: 110px;
+    }
+
+    header {
+        padding: 70px 20px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .columna-formulario {
+        padding: 25px;
+    }
+
+    .columna-texto h3 {
+        font-size: 1.8rem;
+    }
+}
+
+/* Respeta a quienes desactivan las animaciones en su dispositivo */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
 }
