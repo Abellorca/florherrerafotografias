@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Florencia Herrera | Fotografía. Galería de obras y servicios especiales para eventos.">
     <title>Florencia Herrera | Fotografía</title>
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Script de identidad de Netlify para gestión de usuarios -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Script de identidad de Netlify para gestión de usuarios (CMS) -->
+    <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -31,31 +32,37 @@
 
     <!-- Sección Galería de Obras -->
     <section id="galeria-seccion">
-        <h2 style="text-align: center; margin-top: 60px; font-size: 2rem; color: #ffffff;">Galería de Obras</h2>
-        <p style="text-align: center; color: #888888; margin-bottom: 25px;">Seleccioná una categoría para ver las fotografías disponibles.</p>
+        <h2 class="titulo-galeria">Galería de Obras</h2>
+        <p class="subtitulo-galeria">Seleccioná una categoría para ver las fotografías disponibles.</p>
 
         <!-- Contenedor para filtros/botones de álbumes -->
-        <div id="filtros-albumes" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; flex-wrap: wrap; padding: 0 20px;"></div>
+        <div id="filtros-albumes"></div>
 
         <!-- Grilla donde JavaScript inyectará las tarjetas -->
-        <main class="galeria" id="contenedor-galeria"></main>
+        <main class="galeria" id="contenedor-galeria" aria-live="polite"></main>
     </section>
 
     <!-- Sección de Contratación Especial -->
     <section class="seccion-servicios" id="contratar-seccion">
         <div class="servicios-contenedor">
-            
+
             <!-- Columna Izquierda: Formulario -->
             <div class="columna-formulario">
                 <h2>Contratar Servicio Especial</h2>
                 <p class="subtitulo-form">Completá los detalles de tu evento y me pondré en contacto.</p>
-                
+
                 <form id="form-servicio-especial">
-                    <input type="text" id="nombre-cliente" placeholder="Ej: Juan Pérez" required />
-                    <input type="tel" id="telefono-cliente" placeholder="Ej: +54 9 3865 123456" required />
-                    <textarea id="descripcion-evento" placeholder="Tipo de evento, fecha estimada y lugar..." required></textarea>
-                    <textarea id="expectativas-servicio" placeholder="Estilo de fotos, cantidad de imágenes editadas, etc..." required></textarea>
-                    
+                    <input type="text" id="nombre-cliente" name="nombre" placeholder="Ej: Juan Pérez"
+                           aria-label="Nombre y apellido" autocomplete="name" required />
+                    <input type="tel" id="telefono-cliente" name="telefono" placeholder="Ej: +54 9 3865 123456"
+                           aria-label="Teléfono de contacto" autocomplete="tel" required />
+                    <textarea id="descripcion-evento" name="descripcion" rows="4"
+                              placeholder="Tipo de evento, fecha estimada y lugar..."
+                              aria-label="Descripción del evento" required></textarea>
+                    <textarea id="expectativas-servicio" name="expectativas" rows="4"
+                              placeholder="Estilo de fotos, cantidad de imágenes editadas, etc..."
+                              aria-label="Expectativas del servicio" required></textarea>
+
                     <button type="submit" id="btn-enviar-presupuesto">Enviar Solicitud de Presupuesto</button>
                 </form>
             </div>
@@ -67,7 +74,7 @@
                 <p class="descripcion-vendedora">
                     Cada evento cuenta una historia única. Mi objetivo como fotógrafa no es solo registrar un día en el calendario, sino capturar la atmósfera, las risas espontáneas y los detalles que a menudo pasan desapercibidos.
                 </p>
-                
+
                 <div class="item-expectativa">
                     <h4>✨ Calidad de Autor</h4>
                     <p>Entrego coberturas personalizadas con un proceso de edición digital minucioso, cuidando la luz, el color y la narrativa visual de cada toma.</p>
@@ -93,8 +100,9 @@
         <p class="creditos">Hecho por <span class="autor">Lorca, Abel</span></p>
     </footer>
 
-    <!-- Botón Flotante de WhatsApp -->
-    <a href="https://wa.me/5493865260159" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+    <!-- Botón Flotante de WhatsApp (el script.js le completa el enlace con el número central) -->
+    <a href="https://api.whatsapp.com/send?phone=5493865260159" id="btn-whatsapp" class="btn-whatsapp"
+       target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
         💬 WhatsApp
     </a>
 
